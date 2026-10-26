@@ -1894,8 +1894,8 @@ h1 {
 
 .partner-logos {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .partner-logo {
@@ -1967,11 +1967,14 @@ h1 {
   max-height: 52px;
 }
 
-.partner-logo:nth-child(1) { grid-column: span 3; }
-.partner-logo:nth-child(2) { grid-column: span 3; }
-.partner-logo:nth-child(3) { grid-column: span 2; }
-.partner-logo:nth-child(4) { grid-column: span 2; }
-.partner-logo:nth-child(5) { grid-column: span 2; }
+.partner-logo:nth-child(1) { grid-column: span 1; }
+.partner-logo:nth-child(2) { grid-column: span 1; }
+.partner-logo:nth-child(3) { 
+  grid-column: span 2; 
+  min-height: 85px;
+  flex-direction: row;
+  gap: 12px;
+}
 
 .logo-symbol {
   font-size: 26px;
@@ -2740,15 +2743,18 @@ h1 {
   }
   
   .partner-logos {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
 
-  .partner-logo:nth-child(1) { grid-column: span 2; }
-  .partner-logo:nth-child(2) { grid-column: span 2; }
-  .partner-logo:nth-child(3) { grid-column: span 2; }
-  .partner-logo:nth-child(4) { grid-column: span 2; }
-  .partner-logo:nth-child(5) { grid-column: span 4; }
+  .partner-logo:nth-child(1) { grid-column: span 1; }
+  .partner-logo:nth-child(2) { grid-column: span 1; }
+  .partner-logo:nth-child(3) { 
+    grid-column: span 2;
+    min-height: 85px;
+    flex-direction: row;
+    gap: 12px;
+  }
 
   /* KV Banner Card (Vertical Stacking to prevent typography clash) */
   .kv-banner-card {
@@ -2910,9 +2916,12 @@ h1 {
 
   .partner-logo:nth-child(1) { grid-column: span 1; }
   .partner-logo:nth-child(2) { grid-column: span 1; }
-  .partner-logo:nth-child(3) { grid-column: span 1; }
-  .partner-logo:nth-child(4) { grid-column: span 1; }
-  .partner-logo:nth-child(5) { grid-column: span 2; }
+  .partner-logo:nth-child(3) { 
+    grid-column: span 2; 
+    min-height: 80px;
+    flex-direction: row;
+    gap: 10px;
+  }
   
   .partner-logo {
     min-height: 105px;

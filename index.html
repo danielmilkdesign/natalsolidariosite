@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-  <div role="status" style="background:#fff3cd;color:#4f3c00;padding:12px;text-align:center;font:14px system-ui">Demonstração local: números ilustrativos, formulários salvos somente neste navegador. Não envie dados pessoais nem faça pagamentos. Nenhuma mensagem será enviada.</div>
     <a class="skip-link" href="#conteudo">Saltar para o conteúdo principal</a>
 
     <!-- Background Tech Glow Elements -->
@@ -24,6 +23,9 @@
 
     <!-- Header Navigation -->
     <header class="site-header" id="inicio">
+      <div class="demo-banner" role="status">
+        <span>✦ Demonstração local: números ilustrativos salvos neste navegador. Não envie dados pessoais nem faça pagamentos.</span>
+      </div>
       <div class="shell header-inner">
         <a class="brand brand-header" href="#inicio" aria-label="Natal Solidário em TI, início">
           <img 
@@ -45,6 +47,7 @@
           <a href="#impacto">Transparência</a>
           <a href="#calculadora">Calculadora</a>
           <a href="#ajudar">Como Ajudar</a>
+          <a href="#coordenacao">Coordenação</a>
           <a href="#parceiros">Parceiros</a>
           <a class="nav-admin" href="/" target="_blank" rel="noreferrer" title="Acesso dos coordenadores ao sistema de gestão">
             <span class="admin-pulse"></span> Painel de Gestão <i>✦</i>
@@ -55,6 +58,7 @@
         </nav>
       </div>
     </header>
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
 
     <main id="conteudo">
       <!-- HERO SECTION COM O KV COMPLETO EM DESTAQUE -->
@@ -423,6 +427,150 @@
         </div>
       </section>
 
+      <!-- SEÇÃO COORDENAÇÃO (SORAYA SILVA & DANIEL LEITE) -->
+      <section class="coordinators section-pad" id="coordenacao" aria-labelledby="coordinators-title">
+        <div class="coord-ambient-glow" aria-hidden="true"></div>
+        <div class="shell">
+          <div class="section-heading heading-centered reveal">
+            <div class="section-kicker">
+              <span class="kicker-spark">✦</span> Liderança & Propósito
+            </div>
+            <h2 id="coordinators-title">
+              Quem faz a mobilização<br /><em>acontecer em campo.</em>
+            </h2>
+            <p>
+              À frente do <strong>Natal Solidário em TI</strong>, nossa coordenação voluntária conecta desenvolvedores, designers e parceiros para transformar dedicação em acolhimento e dignidade para as famílias de Manaus.
+            </p>
+          </div>
+
+          <div class="coordinators-grid">
+            <!-- COORDENADORA: SORAYA SILVA -->
+            <article class="coordinator-card reveal">
+              <div class="coord-glow-effect" aria-hidden="true"></div>
+              <div class="coord-card-inner">
+                <div class="coord-header">
+                  <div class="coord-avatar-wrapper">
+                    <div class="coord-avatar-ring">
+                      <img 
+                        src="assets/sora.png" 
+                        alt="Foto de Soraya Silva, Coordenadora Geral do Natal Solidário em TI" 
+                        class="coord-avatar-img"
+                        width="140"
+                        height="140"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span class="coord-badge-status" title="Coordenação Geral Ativa">
+                      <span class="coord-pulse"></span> Coordenadora
+                    </span>
+                  </div>
+
+                  <div class="coord-header-info">
+                    <span class="coord-tag">Coordenação Geral</span>
+                    <h3 class="coord-name">Soraya Silva</h3>
+                    <p class="coord-role-desc">Mobilização Social & Gestão de Entregas</p>
+                    <span class="coord-org">
+                      <span class="org-icon">✦</span> Amigos do Sistema • Manaus, AM
+                    </span>
+                  </div>
+                </div>
+
+                <div class="coord-body">
+                  <p class="coord-bio">
+                    Articula com sensibilidade e zelo a triagem das famílias, a organização do voluntariado e a logística de campo, garantindo que cada cesta básica, brinquedo e kit de higiene chegue com dignidade, carinho e respeito aos lares.
+                  </p>
+                </div>
+
+                <div class="coord-footer">
+                  <div class="coord-chips">
+                    <span class="coord-chip">📦 Logística & Triagem</span>
+                    <span class="coord-chip">🤝 Acolhimento Social</span>
+                    <span class="coord-chip">✨ Mobilização Comunitária</span>
+                  </div>
+                  <a 
+                    href="mailto:coordenacao@natalti.org?subject=Contato%20-%20Soraya%20Silva%20(Coordena%C3%A7%C3%A3o%20Natal%20Solid%C3%A1rio)" 
+                    class="coord-contact-btn"
+                    title="Enviar e-mail para a coordenação com Soraya Silva"
+                  >
+                    <span>Falar com a Coordenação</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- COORDENADOR: DANIEL LEITE -->
+            <article class="coordinator-card reveal">
+              <div class="coord-glow-effect" aria-hidden="true"></div>
+              <div class="coord-card-inner">
+                <div class="coord-header">
+                  <div class="coord-avatar-wrapper">
+                    <div class="coord-avatar-ring">
+                      <img 
+                        src="assets/Daniel.png" 
+                        alt="Foto de Daniel Leite, Coordenador Geral do Natal Solidário em TI" 
+                        class="coord-avatar-img"
+                        width="140"
+                        height="140"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span class="coord-badge-status" title="Coordenação Geral Ativa">
+                      <span class="coord-pulse"></span> Coordenador
+                    </span>
+                  </div>
+
+                  <div class="coord-header-info">
+                    <span class="coord-tag">Coordenação Geral</span>
+                    <h3 class="coord-name">Daniel Leite</h3>
+                    <p class="coord-role-desc">Articulação Tech & Gestão da Campanha</p>
+                    <span class="coord-org">
+                      <span class="org-icon">✦</span> Amigos do Sistema • Manaus, AM
+                    </span>
+                  </div>
+                </div>
+
+                <div class="coord-body">
+                  <p class="coord-bio">
+                    Conecta desenvolvedores, fundadores e empresas de tecnologia ao propósito social, unindo inovação, comunicação e transparência digital para multiplicar o alcance da campanha e impactar centenas de vidas.
+                  </p>
+                </div>
+
+                <div class="coord-footer">
+                  <div class="coord-chips">
+                    <span class="coord-chip">💻 Ecossistema Tech</span>
+                    <span class="coord-chip">⚡ Transparência & Dados</span>
+                    <span class="coord-chip">🚀 Articulação de Parceiros</span>
+                  </div>
+                  <a 
+                    href="mailto:coordenacao@natalti.org?subject=Contato%20-%20Daniel%20Leite%20(Coordena%C3%A7%C3%A3o%20Natal%20Solid%C3%A1rio)" 
+                    class="coord-contact-btn"
+                    title="Enviar e-mail para a coordenação com Daniel Leite"
+                  >
+                    <span>Falar com a Coordenação</span>
+                    <span class="btn-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- NOTA DE TRANSPARÊNCIA E COMPROMISSO -->
+          <div class="coord-trust-card reveal">
+            <div class="trust-card-icon" aria-hidden="true">✦</div>
+            <div class="trust-card-text">
+              <strong>Compromisso 100% Voluntário e Aberto</strong>
+              <p>
+                Nossos coordenadores atuam de forma totalmente voluntária através do <strong>Amigos do Sistema</strong>. Todo valor doado via PIX e todo lucro da camisa oficial são revertidos integralmente para a aquisição de alimentos, brinquedos, kits e custos operacionais de entrega em Manaus.
+              </p>
+            </div>
+            <a href="/" target="_blank" rel="noreferrer" class="button button-ghost trust-audit-btn">
+              Acessar Painel de Gestão <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- SEÇÃO DE PARCERIAS E STARTUPS -->
       <section class="partners section-pad" id="parceiros" aria-labelledby="partners-title">
         <div class="shell partners-layout">
@@ -492,14 +640,16 @@
       <section class="kv-banner-section" aria-label="Destaque da identidade visual oficial">
         <div class="shell">
           <div class="kv-banner-card reveal">
-            <img 
-              src="assets/kv-natal.jpg" 
-              alt="Natal Solidário em TI: Conectando tecnologia, esperança e solidariedade - Banner Oficial" 
-              class="kv-banner-img"
-              loading="lazy"
-              width="1440"
-              height="810"
-            />
+            <div class="kv-banner-media">
+              <img 
+                src="assets/kv-natal.jpg" 
+                alt="Natal Solidário em TI: Conectando tecnologia, esperança e solidariedade - Banner Oficial" 
+                class="kv-banner-img"
+                loading="lazy"
+                width="1440"
+                height="810"
+              />
+            </div>
             <div class="kv-banner-content">
               <span class="banner-pill">✦ Campanha Oficial 2026</span>
               <h3>Conectando tecnologia, esperança e solidariedade.</h3>
@@ -584,6 +734,7 @@
             <li><a href="#impacto">Prestação de Contas</a></li>
             <li><a href="#calculadora">Calculadora de Impacto</a></li>
             <li><a href="#ajudar">Como Contribuir</a></li>
+            <li><a href="#coordenacao">Coordenação</a></li>
             <li><a href="#parceiros">Parceiros</a></li>
             <li><a href="/" target="_blank" rel="noreferrer">Painel de Gestão ↗</a></li>
           </ul>

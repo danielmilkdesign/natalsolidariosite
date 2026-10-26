@@ -49,7 +49,7 @@ const modalTemplates = {
         <label>Seu e-mail corporativo ou pessoal
           <input required name="email" type="email" placeholder="voce@email.com" />
         </label>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-row-2col">
           <label>Tamanho da camisa
             <select name="tamanho" required>
               <option value="PP">PP</option>
@@ -111,7 +111,7 @@ const modalTemplates = {
         <label>Nome do Representante
           <input required name="representante" type="text" placeholder="Ex: Roberto Silva (CTO / People)" />
         </label>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-row-2col">
           <label>WhatsApp corporativo
             <input required name="whatsapp" type="text" placeholder="(92) 99999-9999" />
           </label>
@@ -393,17 +393,58 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Mobile Navigation Toggle
+// Mobile Navigation Drawer Controller
+const navBackdrop = document.querySelector('#navBackdrop');
+
+function closeMobileMenu() {
+  if (siteNav) siteNav.classList.remove('is-open');
+  if (menuToggle) {
+    menuToggle.classList.remove('is-active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  document.body.classList.remove('nav-open');
+}
+
+function openMobileMenu() {
+  if (siteNav) siteNav.classList.add('is-open');
+  if (menuToggle) {
+    menuToggle.classList.add('is-active');
+    menuToggle.setAttribute('aria-expanded', 'true');
+  }
+  document.body.classList.add('nav-open');
+}
+
 if (menuToggle && siteNav) {
-  menuToggle.addEventListener('click', () => {
-    const isOpen = siteNav.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isCurrentlyOpen = siteNav.classList.contains('is-open');
+    if (isCurrentlyOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
   });
 
   siteNav.addEventListener('click', (event) => {
     if (event.target.closest('a') || event.target.closest('button')) {
-      siteNav.classList.remove('is-open');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      closeMobileMenu();
+    }
+  });
+
+  if (navBackdrop) {
+    navBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && siteNav.classList.contains('is-open')) {
+      closeMobileMenu();
+    }
+  });
+
+  // Close when window resized to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024 && siteNav.classList.contains('is-open')) {
+      closeMobileMenu();
     }
   });
 }

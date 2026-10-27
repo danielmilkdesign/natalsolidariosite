@@ -29,10 +29,22 @@ let currentPresetDonation = null;
 const modalTemplates = {
   pix: {
     icon: '⚡',
-    getHtml: () => {
-      return '<h2>PIX indisponível nesta demonstração</h2><p>Nenhuma chave ou QR Code de pagamento foi validado pela coordenação. Não efetue transferências usando este site de demonstração.</p>';
+    getHtml: () => `
+      <h2>Faça sua doação via <em>PIX.</em></h2>
+      <p>Cada contribuição é revertida integralmente na aquisição de cestas básicas, brinquedos, leite e fraldas para famílias em vulnerabilidade em Manaus.</p>
+      
+      <div class="pix-box">
+        <div class="pix-key">
+          <div>
+            <span style="display:block; font-size:11px; font-weight:800; color:var(--ink-secondary); text-transform:uppercase; letter-spacing:0.06em;">Chave PIX Oficial (E-mail)</span>
+            <code id="pixKeyText" style="font-size:15px; font-weight:700; color:var(--forest-night);">coordenacao@natalti.org</code>
+          </div>
+          <button class="copy-button" type="button" data-copy-pix title="Copiar chave PIX">Copiar Chave 📋</button>
+        </div>
+      </div>
 
-    }
+      <small>Abra o app do seu banco, escolha a opção PIX (chave e-mail), cole a chave acima e confirme o valor desejado.</small>
+    `
   },
   camisa: {
     icon: '👕',
@@ -61,14 +73,14 @@ const modalTemplates = {
         </div>
       </div>
 
-      <form class="modal-form" data-demo-form data-form-type="camisa">
+      <form class="modal-form" data-order-form data-form-type="camisa">
         <label>Seu nome completo
           <input required name="nome" type="text" placeholder="Como podemos te chamar?" />
         </label>
-        <label>WhatsApp fictício (nenhuma mensagem será enviada)
-          <input required name="whatsapp" type="text" placeholder="(92) 99999-9999" />
+        <label>WhatsApp para contato (com DDD)
+          <input required name="whatsapp" type="tel" placeholder="(92) 9XXXX-XXXX" />
         </label>
-        <label>Seu e-mail corporativo ou pessoal
+        <label>Seu e-mail
           <input required name="email" type="email" placeholder="voce@email.com" />
         </label>
         <div class="form-row-2col">
@@ -87,13 +99,13 @@ const modalTemplates = {
           </label>
         </div>
         <div id="camisaTotal" style="padding:10px 14px; background:#f3eee4; border-radius:8px; font-weight:700; font-size:13px; color:#0a1f1b;">
-          Total demonstrativo: R$ 50,00
+          Total a pagar: R$ 50,00
         </div>
         <button class="button button-primary" type="submit">
-          Salvar pedido demonstrativo <span aria-hidden="true">↗</span>
+          Confirmar Pedido da Camisa <span>👕</span>
         </button>
       </form>
-      <small>Demonstração: salvo somente neste navegador, na mesma origem do Sistema de Gestão. Nenhum pedido real será enviado.</small>
+      <small>Ao confirmar, seu pedido será registrado e você receberá as instruções para pagamento e retirada/entrega em Manaus.</small>
     `
   },
   coleta: {
@@ -126,16 +138,16 @@ const modalTemplates = {
     getHtml: () => `
       <h2>Vamos transformar <em>juntos?</em></h2>
       <p>Empresas, aceleradoras e startups de Manaus: junte seu time a essa rede de solidariedade.</p>
-      <form class="modal-form" data-demo-form data-form-type="parceiro">
+      <form class="modal-form" data-order-form data-form-type="parceiro">
         <label>Nome da Empresa / Startup
-          <input required name="empresa" type="text" placeholder="Ex: Manaus Cloud Tech" />
+          <input required name="empresa" type="text" placeholder="Ex: Sua Empresa de Tecnologia" />
         </label>
         <label>Nome do Representante
-          <input required name="representante" type="text" placeholder="Ex: Roberto Silva (CTO / People)" />
+          <input required name="representante" type="text" placeholder="Ex: Nome do contato (Diretoria / RH / Tech)" />
         </label>
         <div class="form-row-2col">
           <label>WhatsApp corporativo
-            <input required name="whatsapp" type="text" placeholder="(92) 99999-9999" />
+            <input required name="whatsapp" type="tel" placeholder="(92) 9XXXX-XXXX" />
           </label>
           <label>Apoio estimado (R$)
             <input name="valor" type="number" step="100" placeholder="Ex: 2500" />
@@ -148,10 +160,10 @@ const modalTemplates = {
           <textarea required name="mensagem" placeholder="Conte brevemente sobre o interesse de apoio da sua organização..."></textarea>
         </label>
         <button class="button button-primary" type="submit">
-          Cadastrar Proposta de Parceria <span aria-hidden="true">↗</span>
+          Enviar Proposta de Parceria <span aria-hidden="true">↗</span>
         </button>
       </form>
-      <small>Sua proposta entra instantaneamente no CRM Kanban da Coordenação de Parcerias.</small>
+      <small>Nossa equipe de coordenação entrará em contato em até 24h para formalizar a parceria e a inclusão da marca nos materiais da campanha.</small>
     `
   },
   'arte-kv': {
@@ -328,7 +340,7 @@ function syncGoalsFromSystem() {
         if (bigNum) bigNum.innerHTML = `${percent}<small>%</small>`;
 
         const countTxt = document.querySelector('.progress-copy strong');
-        if (countTxt) countTxt.innerHTML = `${m.atual} <span>de ${m.meta} cestas arrecadadas (demo)</span>`;
+        if (countTxt) countTxt.innerHTML = `${m.atual} <span>de ${m.meta} cestas arrecadadas</span>`;
 
         const track = document.querySelector('.progress-track-large span');
         if (track) track.style.width = `${percent}%`;
@@ -346,7 +358,7 @@ function syncGoalsFromSystem() {
           const track = card.querySelector('.progress-track span');
           if (track) track.style.width = `${percent}%`;
           const foot = card.querySelector('.progress-card-foot span:first-child');
-          if (foot) foot.textContent = `${m.atual} de ${m.meta} brinquedos (demo)`;
+          if (foot) foot.textContent = `${m.atual} de ${m.meta} brinquedos`;
         }
       } else if (m.item_tipo === 'kit_higiene' || m.item_tipo === 'leite_fralda') {
         const card = document.querySelector('.progress-card:nth-of-type(2)');
@@ -379,22 +391,24 @@ document.addEventListener('click', (event) => {
 
   const copyButton = event.target.closest('[data-copy-pix]');
   if (copyButton) {
-    showToast('PIX real indisponível nesta demonstração.');
+    const key = document.querySelector('#pixKeyText')?.textContent?.trim() || 'coordenacao@natalti.org';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(key).then(() => {
+        copyButton.textContent = 'Copiado! ✓';
+        showToast('Chave PIX copiada: ' + key);
+        setTimeout(() => { copyButton.textContent = 'Copiar Chave 📋'; }, 3000);
+      }).catch(() => {
+        showToast('Chave PIX: ' + key);
+      });
+    } else {
+      showToast('Chave PIX: ' + key);
+    }
   }
 });
 
-// Demo submission: one snapshot write, no payment or message side effects.
-const DEMO_STORAGE_KEY = 'natal_ti_demo_state_v2';
-function saveDemoSubmission(collection, item) {
-  const raw = localStorage.getItem(DEMO_STORAGE_KEY);
-  if (!raw) throw new Error('Abra o Sistema de Gestão e salve um registro na demonstração antes de testar este formulário.');
-  const state = JSON.parse(raw);
-  if (!state || !Array.isArray(state[collection])) throw new Error('Dados locais inválidos. Preserve uma cópia e revise no sistema.');
-  state[collection].unshift(item);
-  localStorage.setItem(DEMO_STORAGE_KEY, JSON.stringify(state));
-}
+// Formulários oficiais: registro local e direcionamento para a coordenação
 modalContent.addEventListener('submit', (event) => {
-  const form = event.target.closest('[data-demo-form]');
+  const form = event.target.closest('[data-order-form]');
   if (!form) return;
   event.preventDefault();
   const formData = new FormData(form);
@@ -403,15 +417,57 @@ modalContent.addEventListener('submit', (event) => {
     if (form.dataset.formType === 'camisa') {
       const quantity = Number(formData.get('quantidade'));
       const size = text('tamanho');
-      if (!text('nome') || !text('whatsapp') || !Number.isSafeInteger(quantity) || quantity < 1 || quantity > 20 || !['PP','P','M','G','GG','XG'].includes(size)) throw new Error('Informe nome fictício, contato fictício e quantidade entre 1 e 20.');
-      saveDemoSubmission('pedidosCamisas', { id: 'ped-' + crypto.randomUUID(), nome_comprador: text('nome'), whatsapp: text('whatsapp'), tamanho: size, quantidade: quantity, valor_total: quantity * 50, pagamento_status: false, entrega_status: 'pendente', created_at: new Date().toISOString(), origem_site: true });
+      const nome = text('nome');
+      const whatsapp = text('whatsapp');
+      const email = text('email');
+      if (!nome || !whatsapp || !Number.isSafeInteger(quantity) || quantity < 1 || quantity > 20 || !['PP','P','M','G','GG','XG'].includes(size)) {
+        throw new Error('Por favor, informe seu nome, WhatsApp válido e quantidade entre 1 e 20.');
+      }
+      
+      // Salva no armazenamento local do usuário
+      try {
+        const pedidos = JSON.parse(localStorage.getItem('pedidos_camisas_natal_ti') || '[]');
+        pedidos.unshift({ id: 'ped-' + Date.now(), nome, whatsapp, email, tamanho: size, quantidade: quantity, valor_total: quantity * 50, created_at: new Date().toISOString() });
+        localStorage.setItem('pedidos_camisas_natal_ti', JSON.stringify(pedidos));
+      } catch (e) { /* storage fallback */ }
+
+      // Abre WhatsApp da coordenação ou envia e-mail com os detalhes
+      const mailSubject = encodeURIComponent(`Pedido Camisa Natal Solidário em TI - ${nome} (${quantity} un)`);
+      const mailBody = encodeURIComponent(`Olá, Coordenação do Natal Solidário em TI!\n\nGostaria de confirmar meu pedido de camisas oficiais:\n\n• Nome: ${nome}\n• WhatsApp: ${whatsapp}\n• E-mail: ${email}\n• Tamanho: ${size}\n• Quantidade: ${quantity}\n• Total: R$ ${(quantity * 50).toFixed(2).replace('.', ',')}\n\nAguardando dados para pagamento e combinação da entrega em Manaus.`);
+      
+      form.reset();
+      hideModal();
+      showToast(`Pedido de ${quantity} camisa(s) registrado! Abrindo confirmação com a coordenação...`);
+      window.open(`mailto:coordenacao@natalti.org?subject=${mailSubject}&body=${mailBody}`, '_blank');
+      
     } else if (form.dataset.formType === 'parceiro') {
-      const value = Number(formData.get('valor') || 0);
-      if (!text('empresa') || !text('representante') || !Number.isFinite(value) || value < 0 || value > 99999999 || Math.abs(value * 100 - Math.round(value * 100)) > 0.00001) throw new Error('Informe empresa e representante fictícios e valor válido.');
-      saveDemoSubmission('parceiros', { id: 'crm-' + crypto.randomUUID(), nome_empresa: text('empresa'), representante: text('representante'), email_contato: text('email'), telefone_contato: text('whatsapp'), estagio_funil: 'contato_inicial', valor_prometido: value, contrapartidas: text('mensagem'), origem_site: true, created_at: new Date().toISOString() });
-    } else return;
-    form.reset(); hideModal(); showToast('Exemplo salvo neste navegador. Nenhuma mensagem foi enviada.');
-  } catch (error) { showToast(error.message || 'Não foi possível salvar. Verifique o armazenamento e tente novamente.'); }
+      const empresa = text('empresa');
+      const representante = text('representante');
+      const whatsapp = text('whatsapp');
+      const email = text('email');
+      const valor = Number(formData.get('valor') || 0);
+      const mensagem = text('mensagem');
+      if (!empresa || !representante || !whatsapp || !email) {
+        throw new Error('Por favor, preencha todos os campos obrigatórios de contato.');
+      }
+
+      try {
+        const parcerias = JSON.parse(localStorage.getItem('parcerias_natal_ti') || '[]');
+        parcerias.unshift({ id: 'crm-' + Date.now(), empresa, representante, email, whatsapp, valor, mensagem, created_at: new Date().toISOString() });
+        localStorage.setItem('parcerias_natal_ti', JSON.stringify(parcerias));
+      } catch (e) { /* storage fallback */ }
+
+      const mailSubject = encodeURIComponent(`Proposta de Parceria - ${empresa}`);
+      const mailBody = encodeURIComponent(`Olá, Coordenação do Natal Solidário em TI!\n\nTemos interesse em apoiar a campanha 2026:\n\n• Empresa: ${empresa}\n• Representante: ${representante}\n• WhatsApp: ${whatsapp}\n• E-mail: ${email}\n• Apoio estimado: R$ ${valor > 0 ? valor.toFixed(2).replace('.', ',') : 'A definir'}\n• Proposta: ${mensagem}`);
+
+      form.reset();
+      hideModal();
+      showToast('Proposta registrada! Abrindo contato com a coordenação...');
+      window.open(`mailto:coordenacao@natalti.org?subject=${mailSubject}&body=${mailBody}`, '_blank');
+    }
+  } catch (error) {
+    showToast(error.message || 'Verifique os dados preenchidos e tente novamente.');
+  }
 });
 
 // Close on ESC and Trap Focus

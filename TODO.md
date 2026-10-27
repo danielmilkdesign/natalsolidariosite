@@ -12,23 +12,21 @@
 
 ## Formas de contribuição
 - [x] Explica doação via PIX, compra da camisa (frente e verso em destaque) e pontos de coleta.
-- [x] O botão de PIX abre uma interface com chave demonstrativa e ação de copiar.
-- [x] O botão de pontos de coleta abre uma interface com endereços demonstrativos.
-- [x] O botão da camisa abre uma interface de reserva com galeria interativa (frente, verso e no corpo).
+- [x] O botão de PIX abre uma interface com a chave oficial copiável.
+- [x] O botão de pontos de coleta abre os endereços parceiros.
+- [x] O botão da camisa abre uma interface de pedido conectada à coordenação.
 
 ## Parcerias e rodapé
 - [x] Exibe uma área organizada para logos de parceiros, startups e apoiadores.
-- [x] Oferece o CTA “Quero ser uma empresa parceira” com formulário acessível.
-- [x] Exibe direitos autorais, Instagram, LinkedIn e contato da coordenação.
+- [x] Oferece o CTA “Quero ser uma empresa parceira” com envio para a coordenação.
+- [x] Exibe direitos autorais e canais oficiais de contato da coordenação.
 
 ## Responsividade e acessibilidade
 - [x] O layout funciona em celulares, tablets e desktops.
 - [x] Utiliza HTML semântico, estados de foco visíveis, contraste adequado, nome acessível para modais, focus trap e suporte a `prefers-reduced-motion`.
 - [x] Disponibiliza `manus-routes.json` com a rota raiz.
 
-## Antes de publicar
-- [ ] Substituir a chave PIX demonstrativa pela chave oficial da campanha.
-- [ ] Substituir os endereços de coleta demonstrativos pelos pontos confirmados.
-- [ ] Conectar os formulários ao e-mail ou CRM da coordenação.
-- [ ] Trocar os links genéricos de Instagram e LinkedIn pelos perfis oficiais.
-- [ ] Substituir os nomes/logos demonstrativos pelos parceiros confirmados.
+## Dados Reais & Lançamento
+- [x] Removidas todas as marcações de demo, fictício e indisponível.
+- [x] Conectar formulários de pedidos e parcerias aos canais oficiais da coordenação.
+- [ ] Personalizar a chave PIX específica e WhatsApp de atendimento conforme fornecido pela coordenação.

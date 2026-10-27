@@ -38,7 +38,29 @@ const modalTemplates = {
     icon: '👕',
     getHtml: () => `
       <h2>Vista a <em>causa.</em></h2>
-      <p>A camisa oficial do Natal Solidário em TI (R$ 50,00) financia a alimentação das famílias e a logística dos voluntários.</p>
+      <p>A camisa oficial do Natal Solidário em TI (R$ 50,00) financia a alimentação das famílias, leite e fraldas e a logística dos voluntários.</p>
+      
+      <div class="modal-shirt-preview">
+        <div class="shirt-main-img-box">
+          <img id="modalShirtImg" src="assets/camisa.jpg" alt="Camisa Oficial Natal Solidário em TI" class="modal-shirt-img" />
+          <span id="modalShirtTag" class="shirt-img-tag">Frente e Verso no corpo</span>
+        </div>
+        <div class="shirt-thumbs">
+          <button type="button" class="shirt-thumb-btn active" data-shirt-src="assets/camisa.jpg" data-shirt-tag="Frente e Verso no corpo">
+            <img src="assets/camisa.jpg" alt="No corpo" />
+            <span>Em uso</span>
+          </button>
+          <button type="button" class="shirt-thumb-btn" data-shirt-src="assets/frente.jpg" data-shirt-tag="Vista Frontal Oficial">
+            <img src="assets/frente.jpg" alt="Frente" />
+            <span>Frente</span>
+          </button>
+          <button type="button" class="shirt-thumb-btn" data-shirt-src="assets/verso.jpg" data-shirt-tag="Vista Posterior Oficial">
+            <img src="assets/verso.jpg" alt="Verso" />
+            <span>Verso</span>
+          </button>
+        </div>
+      </div>
+
       <form class="modal-form" data-demo-form data-form-type="camisa">
         <label>Seu nome completo
           <input required name="nome" type="text" placeholder="Como podemos te chamar?" />
@@ -78,7 +100,7 @@ const modalTemplates = {
     icon: '📍',
     getHtml: () => `
       <h2>Pontos de <em>coleta física.</em></h2>
-      <p>Entregue alimentos não perecíveis, brinquedos novos ou kits de higiene em um dos nossos pontos credenciados em Manaus:</p>
+      <p>Entregue alimentos não perecíveis, brinquedos novos, leite e fraldas em um dos nossos pontos credenciados em Manaus:</p>
       <div class="collection-list">
         <div class="collection-item">
           <strong>Hub de Tecnologia Manaus (Polo Digital)</strong>
@@ -176,6 +198,23 @@ function showModal(type) {
       camisaTotal.textContent = `Total a pagar: R$ ${(q * 50).toFixed(2).replace('.', ',')}`;
     });
   }
+
+  // Listener for interactive modal shirt preview switcher
+  const shirtThumbs = modalContent.querySelectorAll('.shirt-thumb-btn');
+  const modalShirtImg = modalContent.querySelector('#modalShirtImg');
+  const modalShirtTag = modalContent.querySelector('#modalShirtTag');
+  if (shirtThumbs.length && modalShirtImg) {
+    shirtThumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        shirtThumbs.forEach((b) => b.classList.remove('active'));
+        thumb.classList.add('active');
+        modalShirtImg.src = thumb.dataset.shirtSrc;
+        if (modalShirtTag && thumb.dataset.shirtTag) {
+          modalShirtTag.textContent = thumb.dataset.shirtTag;
+        }
+      });
+    });
+  }
 }
 
 function hideModal() {
@@ -199,8 +238,8 @@ function showToast(message) {
 // Interactive Donation Impact Calculator Logic
 const IMPACT_DATA = {
   30: {
-    title: '1 Kit de Higiene e Cuidados Básicos',
-    desc: 'Com R$ 30,00 você garante sabonetes, escovas e cremes dentais, xampu e itens essenciais para o bem-estar e dignidade de uma família ribeirinha.'
+    title: 'Leite e Fralda para Crianças e Bebês',
+    desc: 'Com R$ 30,00 você garante pacotes de fraldas e latas de leite para nutrir e confortar os bebês das famílias atendidas.'
   },
   50: {
     title: '1 Camisa Oficial OU 1 Ceia + Brinquedo',
@@ -211,8 +250,8 @@ const IMPACT_DATA = {
     desc: 'Com R$ 100,00 você garante arroz, feijão, leite, proteína, óleo e itens para uma ceia natalina digna e farta para até 5 pessoas.'
   },
   250: {
-    title: 'Pacote Família Completa (Cesta + Brinquedos + Higiene)',
-    desc: 'Impacto transformador! Você acolhe um lar inteiro com alimentação para o mês de dezembro, brinquedos para os filhos e kit de higiene completo.'
+    title: 'Pacote Família Completa (Cesta + Brinquedos + Leite e Fralda)',
+    desc: 'Impacto transformador! Você acolhe um lar inteiro com alimentação para o mês de dezembro, brinquedos para os filhos, leite e fraldas.'
   },
   500: {
     title: 'Adoção Solidária: 2 Lares Transformados',
@@ -309,7 +348,7 @@ function syncGoalsFromSystem() {
           const foot = card.querySelector('.progress-card-foot span:first-child');
           if (foot) foot.textContent = `${m.atual} de ${m.meta} brinquedos (demo)`;
         }
-      } else if (m.item_tipo === 'kit_higiene') {
+      } else if (m.item_tipo === 'kit_higiene' || m.item_tipo === 'leite_fralda') {
         const card = document.querySelector('.progress-card:nth-of-type(2)');
         if (card) {
           const strong = card.querySelector('strong');
@@ -317,7 +356,7 @@ function syncGoalsFromSystem() {
           const track = card.querySelector('.progress-track span');
           if (track) track.style.width = `${percent}%`;
           const foot = card.querySelector('.progress-card-foot span:first-child');
-          if (foot) foot.textContent = `${m.atual} de ${m.meta} kits`;
+          if (foot) foot.textContent = `${m.atual} de ${m.meta} pacotes`;
         }
       }
     });

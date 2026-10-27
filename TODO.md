@@ -8,13 +8,13 @@
 ## Transparência e impacto
 - [x] Exibe a meta de cestas básicas: 300 de 400 famílias, 75%.
 - [x] Exibe a meta de brinquedos: 200 de 500 crianças, 40%.
-- [x] Exibe a meta de kits de higiene: 450 de 500 kits, 90%.
+- [x] Exibe a meta de leite e fralda: 450 de 500 pacotes, 90%.
 
 ## Formas de contribuição
-- [x] Explica doação via PIX, compra da camisa e pontos de coleta.
+- [x] Explica doação via PIX, compra da camisa (frente e verso em destaque) e pontos de coleta.
 - [x] O botão de PIX abre uma interface com chave demonstrativa e ação de copiar.
 - [x] O botão de pontos de coleta abre uma interface com endereços demonstrativos.
-- [x] O botão da camisa abre uma interface de reserva demonstrativa.
+- [x] O botão da camisa abre uma interface de reserva com galeria interativa (frente, verso e no corpo).
 
 ## Parcerias e rodapé
 - [x] Exibe uma área organizada para logos de parceiros, startups e apoiadores.

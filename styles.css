@@ -3154,6 +3154,370 @@ h1 {
   }
 }
 
+/* ==========================================================================
+   CAMISA OFICIAL SHOWCASE & MODAL PREVIEW
+   ========================================================================== */
+.shirt-showcase {
+  position: relative;
+  background: linear-gradient(180deg, var(--forest-night) 0%, #081d19 50%, var(--forest-night) 100%);
+  border-top: 1px solid rgba(52, 211, 153, 0.14);
+  border-bottom: 1px solid rgba(52, 211, 153, 0.14);
+  overflow: hidden;
+}
+
+.shirt-showcase::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 100%);
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(52, 211, 153, 0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Thumbnail inside Help Card 02 */
+.help-card .shirt-illustration {
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(52, 211, 153, 0.28);
+  background: #0a1f1b;
+}
+
+.shirt-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.35s ease;
+  display: block;
+}
+
+.help-card:hover .shirt-card-thumb {
+  transform: scale(1.08);
+}
+
+.card-links-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.card-view-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--emerald-glow);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.card-view-link:hover {
+  color: var(--mint-neon);
+  transform: translateY(1px);
+}
+
+/* Showcase 3-card Gallery */
+.shirt-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.shirt-gallery-card {
+  position: relative;
+  background: rgba(16, 45, 39, 0.75);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.shirt-gallery-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(52, 211, 153, 0.55);
+  box-shadow: 0 24px 60px rgba(6, 19, 16, 0.6), 0 0 30px rgba(52, 211, 153, 0.16);
+}
+
+.shirt-media-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3.7;
+  overflow: hidden;
+  background: #091a16;
+}
+
+.shirt-gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.shirt-gallery-card:hover .shirt-gallery-img {
+  transform: scale(1.05);
+}
+
+.shirt-badge-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(6, 19, 16, 0.88);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mint-neon);
+  text-transform: uppercase;
+}
+
+.shirt-badge-highlight {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.95), rgba(234, 88, 12, 0.95));
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #ffffff;
+}
+
+.shirt-card-desc {
+  padding: 24px 22px;
+  color: var(--cream-light);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.shirt-card-desc h3 {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--cream-light);
+  letter-spacing: -0.02em;
+}
+
+.shirt-card-desc p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(251, 249, 244, 0.75);
+}
+
+.shirt-card-desc em {
+  color: var(--gold-star);
+  font-style: italic;
+}
+
+/* Specs & CTA Card */
+.shirt-specs-card {
+  margin-top: 36px;
+  background: rgba(16, 45, 39, 0.88);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 32px 36px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.shirt-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.15);
+}
+
+.shirt-spec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.shirt-spec-item .spec-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.shirt-spec-item strong {
+  display: block;
+  font-size: 15px;
+  color: var(--cream-light);
+  margin-bottom: 3px;
+}
+
+.shirt-spec-item p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(251, 249, 244, 0.65);
+}
+
+.shirt-cta-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 24px;
+}
+
+.shirt-price-tag {
+  display: flex;
+  flex-direction: column;
+}
+
+.shirt-price-tag .price-val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--mint-neon);
+  line-height: 1;
+}
+
+.shirt-price-tag .price-sub {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: rgba(251, 249, 244, 0.6);
+}
+
+.shirt-buy-btn {
+  padding: 16px 36px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Modal Shirt Gallery & Switcher */
+.modal-shirt-preview {
+  margin: 18px 0 20px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #091a16;
+  border: 1px solid var(--cream-border);
+}
+
+.shirt-main-img-box {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: #061310;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-shirt-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.shirt-img-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  background: rgba(6, 19, 16, 0.88);
+  color: var(--mint-neon);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.shirt-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 10px;
+  background: var(--cream-card);
+}
+
+.shirt-thumb-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #ffffff;
+  border: 1.5px solid var(--cream-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--forest-night);
+}
+
+.shirt-thumb-btn:hover {
+  border-color: var(--emerald-glow);
+  background: #f7f3ea;
+}
+
+.shirt-thumb-btn.active {
+  border-color: var(--emerald-glow);
+  background: #e6f7ef;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+  color: #064e3b;
+}
+
+.shirt-thumb-btn img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments for shirt showcase */
+@media (max-width: 980px) {
+  .shirt-gallery-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .shirt-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shirt-cta-foot {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .shirt-buy-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .shirt-specs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .shirt-specs-card {
+    padding: 24px 18px;
+  }
+  
+  .shirt-thumbs {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

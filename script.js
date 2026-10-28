@@ -354,7 +354,7 @@ if (menuToggle && siteNav) {
 
   // Close when window resized to desktop
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1024 && siteNav.classList.contains('is-open')) {
+    if (window.innerWidth > 1180 && siteNav.classList.contains('is-open')) {
       closeMobileMenu();
     }
   });

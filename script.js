@@ -14,16 +14,6 @@ const siteNav = document.querySelector('#site-nav');
 let lastFocusedElement = null;
 let toastTimer;
 
-// Real-time synchronization channel with SISTEMA
-let syncChannel = null;
-try {
-  if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
-    syncChannel = new BroadcastChannel('natal_solidario_hub');
-  }
-} catch (e) {
-  // BroadcastChannel unavailable
-}
-
 let currentPresetDonation = null;
 
 const modalTemplates = {
@@ -73,39 +63,7 @@ const modalTemplates = {
         </div>
       </div>
 
-      <form class="modal-form" data-order-form data-form-type="camisa">
-        <label>Seu nome completo
-          <input required name="nome" type="text" placeholder="Como podemos te chamar?" />
-        </label>
-        <label>WhatsApp para contato (com DDD)
-          <input required name="whatsapp" type="tel" placeholder="(92) 9XXXX-XXXX" />
-        </label>
-        <label>Seu e-mail
-          <input required name="email" type="email" placeholder="voce@email.com" />
-        </label>
-        <div class="form-row-2col">
-          <label>Tamanho da camisa
-            <select name="tamanho" required>
-              <option value="PP">PP</option>
-              <option value="P">P</option>
-              <option value="M" selected>M (Mais pedido)</option>
-              <option value="G">G</option>
-              <option value="GG">GG</option>
-              <option value="XG">XG</option>
-            </select>
-          </label>
-          <label>Quantidade
-            <input name="quantidade" type="number" min="1" max="20" value="1" required id="camisaQtd" />
-          </label>
-        </div>
-        <div id="camisaTotal" style="padding:10px 14px; background:#f3eee4; border-radius:8px; font-weight:700; font-size:13px; color:#0a1f1b;">
-          Total a pagar: R$ 50,00
-        </div>
-        <button class="button button-primary" type="submit">
-          Confirmar Pedido da Camisa <span>👕</span>
-        </button>
-      </form>
-      <small>Ao confirmar, seu pedido será registrado e você receberá as instruções para pagamento e retirada/entrega em Manaus.</small>
+      <div class="public-form-notice"><p>Os pedidos de camisas pelo site ainda não estão disponíveis.</p><p>Consulte a coordenação para participar. Nenhum dado é coletado ou enviado por esta página.</p></div>
     `
   },
   coleta: {
@@ -138,32 +96,7 @@ const modalTemplates = {
     getHtml: () => `
       <h2>Vamos transformar <em>juntos?</em></h2>
       <p>Empresas, aceleradoras e startups de Manaus: junte seu time a essa rede de solidariedade.</p>
-      <form class="modal-form" data-order-form data-form-type="parceiro">
-        <label>Nome da Empresa / Startup
-          <input required name="empresa" type="text" placeholder="Ex: Sua Empresa de Tecnologia" />
-        </label>
-        <label>Nome do Representante
-          <input required name="representante" type="text" placeholder="Ex: Nome do contato (Diretoria / RH / Tech)" />
-        </label>
-        <div class="form-row-2col">
-          <label>WhatsApp corporativo
-            <input required name="whatsapp" type="tel" placeholder="(92) 9XXXX-XXXX" />
-          </label>
-          <label>Apoio estimado (R$)
-            <input name="valor" type="number" step="100" placeholder="Ex: 2500" />
-          </label>
-        </div>
-        <label>E-mail institucional
-          <input required name="email" type="email" placeholder="contato@empresa.com" />
-        </label>
-        <label>Como gostariam de apoiar? (Doação direta, camisa para a equipe, voluntariado)
-          <textarea required name="mensagem" placeholder="Conte brevemente sobre o interesse de apoio da sua organização..."></textarea>
-        </label>
-        <button class="button button-primary" type="submit">
-          Enviar Proposta de Parceria <span aria-hidden="true">↗</span>
-        </button>
-      </form>
-      <small>Nossa equipe de coordenação entrará em contato em até 24h para formalizar a parceria e a inclusão da marca nos materiais da campanha.</small>
+      <div class="public-form-notice"><p>Os cadastros de parceiros pelo site ainda não estão disponíveis.</p><p>Consulte a coordenação para participar. Nenhum dado é coletado ou enviado por esta página.</p></div>
     `
   },
   'arte-kv': {
@@ -324,59 +257,6 @@ if (kvCard && window.matchMedia('(min-width: 1025px)').matches) {
   }
 }
 
-// Goal Sync with SISTEMA (localStorage & BroadcastChannel)
-function syncGoalsFromSystem() {
-  try {
-    const raw = localStorage.getItem('natal_ti_demo_state_v2');
-    if (!raw) return;
-    const metas = JSON.parse(raw).metas;
-    if (!Array.isArray(metas) || !metas.every(meta => Number.isFinite(meta.atual) && Number.isFinite(meta.meta) && meta.meta > 0)) return;
-
-    metas.forEach((m) => {
-      const percent = Math.min(100, Math.round((m.atual / m.meta) * 100));
-
-      if (m.item_tipo === 'cesta_basica') {
-        const bigNum = document.querySelector('.progress-feature .big-number');
-        if (bigNum) bigNum.innerHTML = `${percent}<small>%</small>`;
-
-        const countTxt = document.querySelector('.progress-copy strong');
-        if (countTxt) countTxt.innerHTML = `${m.atual} <span>de ${m.meta} cestas arrecadadas</span>`;
-
-        const track = document.querySelector('.progress-track-large span');
-        if (track) track.style.width = `${percent}%`;
-
-        const remaining = document.querySelector('.remaining-count');
-        if (remaining) remaining.textContent = `Faltam ${Math.max(0, m.meta - m.atual)} famílias para a meta`;
-
-        const chipCount = document.querySelector('.badge-cesta small');
-        if (chipCount) chipCount.textContent = `${m.atual} de ${m.meta} cestas`;
-      } else if (m.item_tipo === 'brinquedo') {
-        const card = document.querySelector('.progress-card:nth-of-type(1)');
-        if (card) {
-          const strong = card.querySelector('strong');
-          if (strong) strong.innerHTML = `${percent}<small>%</small>`;
-          const track = card.querySelector('.progress-track span');
-          if (track) track.style.width = `${percent}%`;
-          const foot = card.querySelector('.progress-card-foot span:first-child');
-          if (foot) foot.textContent = `${m.atual} de ${m.meta} brinquedos`;
-        }
-      } else if (m.item_tipo === 'kit_higiene' || m.item_tipo === 'leite_fralda') {
-        const card = document.querySelector('.progress-card:nth-of-type(2)');
-        if (card) {
-          const strong = card.querySelector('strong');
-          if (strong) strong.innerHTML = `${percent}<small>%</small>`;
-          const track = card.querySelector('.progress-track span');
-          if (track) track.style.width = `${percent}%`;
-          const foot = card.querySelector('.progress-card-foot span:first-child');
-          if (foot) foot.textContent = `${m.atual} de ${m.meta} pacotes`;
-        }
-      }
-    });
-  } catch (e) {
-    console.error('Error syncing goals:', e);
-  }
-}
-
 // Global Click Handlers for Modals & Copy Actions
 document.addEventListener('click', (event) => {
   const opener = event.target.closest('[data-open-modal]');
@@ -403,70 +283,6 @@ document.addEventListener('click', (event) => {
     } else {
       showToast('Chave PIX: ' + key);
     }
-  }
-});
-
-// Formulários oficiais: registro local e direcionamento para a coordenação
-modalContent.addEventListener('submit', (event) => {
-  const form = event.target.closest('[data-order-form]');
-  if (!form) return;
-  event.preventDefault();
-  const formData = new FormData(form);
-  const text = key => String(formData.get(key) || '').trim();
-  try {
-    if (form.dataset.formType === 'camisa') {
-      const quantity = Number(formData.get('quantidade'));
-      const size = text('tamanho');
-      const nome = text('nome');
-      const whatsapp = text('whatsapp');
-      const email = text('email');
-      if (!nome || !whatsapp || !Number.isSafeInteger(quantity) || quantity < 1 || quantity > 20 || !['PP','P','M','G','GG','XG'].includes(size)) {
-        throw new Error('Por favor, informe seu nome, WhatsApp válido e quantidade entre 1 e 20.');
-      }
-      
-      // Salva no armazenamento local do usuário
-      try {
-        const pedidos = JSON.parse(localStorage.getItem('pedidos_camisas_natal_ti') || '[]');
-        pedidos.unshift({ id: 'ped-' + Date.now(), nome, whatsapp, email, tamanho: size, quantidade: quantity, valor_total: quantity * 50, created_at: new Date().toISOString() });
-        localStorage.setItem('pedidos_camisas_natal_ti', JSON.stringify(pedidos));
-      } catch (e) { /* storage fallback */ }
-
-      // Abre WhatsApp da coordenação ou envia e-mail com os detalhes
-      const mailSubject = encodeURIComponent(`Pedido Camisa Natal Solidário em TI - ${nome} (${quantity} un)`);
-      const mailBody = encodeURIComponent(`Olá, Coordenação do Natal Solidário em TI!\n\nGostaria de confirmar meu pedido de camisas oficiais:\n\n• Nome: ${nome}\n• WhatsApp: ${whatsapp}\n• E-mail: ${email}\n• Tamanho: ${size}\n• Quantidade: ${quantity}\n• Total: R$ ${(quantity * 50).toFixed(2).replace('.', ',')}\n\nAguardando dados para pagamento e combinação da entrega em Manaus.`);
-      
-      form.reset();
-      hideModal();
-      showToast(`Pedido de ${quantity} camisa(s) registrado! Abrindo confirmação com a coordenação...`);
-      window.open(`mailto:coordenacao@natalti.org?subject=${mailSubject}&body=${mailBody}`, '_blank');
-      
-    } else if (form.dataset.formType === 'parceiro') {
-      const empresa = text('empresa');
-      const representante = text('representante');
-      const whatsapp = text('whatsapp');
-      const email = text('email');
-      const valor = Number(formData.get('valor') || 0);
-      const mensagem = text('mensagem');
-      if (!empresa || !representante || !whatsapp || !email) {
-        throw new Error('Por favor, preencha todos os campos obrigatórios de contato.');
-      }
-
-      try {
-        const parcerias = JSON.parse(localStorage.getItem('parcerias_natal_ti') || '[]');
-        parcerias.unshift({ id: 'crm-' + Date.now(), empresa, representante, email, whatsapp, valor, mensagem, created_at: new Date().toISOString() });
-        localStorage.setItem('parcerias_natal_ti', JSON.stringify(parcerias));
-      } catch (e) { /* storage fallback */ }
-
-      const mailSubject = encodeURIComponent(`Proposta de Parceria - ${empresa}`);
-      const mailBody = encodeURIComponent(`Olá, Coordenação do Natal Solidário em TI!\n\nTemos interesse em apoiar a campanha 2026:\n\n• Empresa: ${empresa}\n• Representante: ${representante}\n• WhatsApp: ${whatsapp}\n• E-mail: ${email}\n• Apoio estimado: R$ ${valor > 0 ? valor.toFixed(2).replace('.', ',') : 'A definir'}\n• Proposta: ${mensagem}`);
-
-      form.reset();
-      hideModal();
-      showToast('Proposta registrada! Abrindo contato com a coordenação...');
-      window.open(`mailto:coordenacao@natalti.org?subject=${mailSubject}&body=${mailBody}`, '_blank');
-    }
-  } catch (error) {
-    showToast(error.message || 'Verifique os dados preenchidos e tente novamente.');
   }
 });
 
@@ -574,19 +390,4 @@ if ('IntersectionObserver' in window) {
   }, 150);
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-// Initial Sync and Storage Listeners
-syncGoalsFromSystem();
-window.addEventListener('storage', (e) => {
-  if (e.key === 'natal_ti_demo_state_v2') {
-    syncGoalsFromSystem();
-  }
-});
-if (syncChannel) {
-  syncChannel.onmessage = (e) => {
-    if (e.data?.key === 'natal_ti_demo_state_v2') {
-      syncGoalsFromSystem();
-    }
-  };
 }

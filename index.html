@@ -51,8 +51,8 @@
           <a href="#camisa">A Camisa</a>
           <a href="#coordenacao">Coordenação</a>
           <a href="#parceiros">Parceiros</a>
-          <a class="nav-admin" href="#impacto" title="Transparência e prestação de contas da campanha">
-            <span class="admin-pulse"></span> Transparência <i>✦</i>
+          <a class="nav-admin" href="impacto.html" title="Acompanhe os resultados públicos da campanha">
+            <span class="admin-pulse"></span> Acompanhar campanha <i>↗</i>
           </a>
           <a class="nav-cta" href="#ajudar">
             Doe pelo PIX <span aria-hidden="true">⚡</span>
@@ -130,11 +130,11 @@
       <section class="impact-ticker" aria-label="Resumo do impacto da campanha">
         <div class="ticker-track">
           <div class="ticker-content">
-            <span class="ticker-item"><span class="pulse-mint"></span> <strong>300</strong> Famílias já Alcançadas</span>
+            <span class="ticker-item"><span class="pulse-mint"></span> <strong data-public-count="cesta_basica">—</strong> Cestas arrecadadas</span>
             <span class="ticker-sep">•</span>
-            <span class="ticker-item">🎁 <strong>200</strong> Brinquedos para Crianças</span>
+            <span class="ticker-item">🎁 <strong data-public-count="brinquedo">—</strong> Brinquedos arrecadados</span>
             <span class="ticker-sep">•</span>
-            <span class="ticker-item">🍼 <strong>450</strong> Pacotes de Leite e Fralda</span>
+            <span class="ticker-item">🍼 <strong data-public-count="kit_higiene">—</strong> Unidades de Leite e Fralda</span>
             <span class="ticker-sep">•</span>
             <span class="ticker-item">⚡ <strong>1 Rede</strong> do Ecossistema Tech de Manaus</span>
             <span class="ticker-sep">•</span>
@@ -145,11 +145,11 @@
           </div>
           <!-- Duplicate for seamless loop -->
           <div class="ticker-content" aria-hidden="true">
-            <span class="ticker-item"><span class="pulse-mint"></span> <strong>300</strong> Famílias já Alcançadas</span>
+            <span class="ticker-item"><span class="pulse-mint"></span> <strong data-public-count="cesta_basica">—</strong> Cestas arrecadadas</span>
             <span class="ticker-sep">•</span>
-            <span class="ticker-item">🎁 <strong>200</strong> Brinquedos para Crianças</span>
+            <span class="ticker-item">🎁 <strong data-public-count="brinquedo">—</strong> Brinquedos arrecadados</span>
             <span class="ticker-sep">•</span>
-            <span class="ticker-item">🍼 <strong>450</strong> Pacotes de Leite e Fralda</span>
+            <span class="ticker-item">🍼 <strong data-public-count="kit_higiene">—</strong> Unidades de Leite e Fralda</span>
             <span class="ticker-sep">•</span>
             <span class="ticker-item">⚡ <strong>1 Rede</strong> do Ecossistema Tech de Manaus</span>
             <span class="ticker-sep">•</span>
@@ -199,8 +199,8 @@
                 </div>
                 <div class="pillar-text">
                   <h3>Cestas Básicas Completas</h3>
-                  <p>Alimentos nutritivos e itens para uma ceia natalina farta e digna para mais de 400 famílias cadastradas.</p>
-                  <span class="pillar-meta">Meta: 400 famílias • 75% atingido</span>
+                  <p>Alimentos nutritivos e itens para uma ceia natalina farta e digna para famílias de Manaus.</p>
+                  <span class="pillar-meta">Meta: <span data-public-goal="cesta_basica">—</span> cestas • <span data-public-delivered="cesta_basica">—</span> entregues</span>
                 </div>
               </article>
 
@@ -211,7 +211,7 @@
                 <div class="pillar-text">
                   <h3>Brinquedos & Sorrisos</h3>
                   <p>Presentes novos e jogos educativos entregues diretamente às crianças pelas mãos dos nossos voluntários.</p>
-                  <span class="pillar-meta">Meta: 500 crianças • 200 entregues</span>
+                  <span class="pillar-meta">Meta: <span data-public-goal="brinquedo">—</span> brinquedos • <span data-public-delivered="brinquedo">—</span> entregues</span>
                 </div>
               </article>
 
@@ -222,7 +222,7 @@
                 <div class="pillar-text">
                   <h3>Leite e Fralda</h3>
                   <p>Nutrição infantil e cuidados essenciais com leite em pó e fraldas para garantir saúde, conforto e dignidade aos bebês e crianças das famílias assistidas.</p>
-                  <span class="pillar-meta">Meta: 500 pacotes • 90% atingido</span>
+                  <span class="pillar-meta">Meta: <span data-public-goal="kit_higiene">—</span> unidades • <span data-public-delivered="kit_higiene">—</span> entregues</span>
                 </div>
               </article>
             </div>
@@ -238,7 +238,7 @@
               <h2 id="impact-title">Cada número conta<br /><em>uma história real.</em></h2>
             </div>
             <p>
-              Acompanhe em tempo real o avanço da arrecadação. Nossa gestão é aberta, auditável e conectada diretamente ao Sistema de Gestão da Coordenação.
+              Acompanhe em tempo real o avanço da arrecadação. Veja os totais públicos registrados pela coordenação, sem expor dados pessoais ou registros individuais.
             </p>
           </div>
 
@@ -256,25 +256,25 @@
 
               <div class="progress-feature-body">
                 <div>
-                  <span class="big-number">75<small>%</small></span>
+                  <span class="big-number"><span data-public-percent="cesta_basica">—</span><small>%</small></span>
                   <span class="progress-caption">da meta alcançada</span>
                 </div>
                 <div class="progress-copy">
                   <h3>Cestas Básicas Familiares</h3>
                   <p>Garantem a ceia e os mantimentos de dezembro para lares em Manaus e proximidades.</p>
-                  <strong>300 <span>de 400 famílias atendidas</span></strong>
+                  <strong><span data-public-count="cesta_basica">—</span> <span>de <span data-public-goal="cesta_basica">—</span> cestas arrecadadas</span></strong>
                 </div>
               </div>
 
               <div class="progress-track-wrapper">
-                <div class="progress-track progress-track-large" role="progressbar" aria-label="Cestas básicas: 75 por cento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75">
-                  <span style="width: 75%"></span>
+                <div class="progress-track progress-track-large" data-public-progress="cesta_basica" role="progressbar" aria-label="Meta de cestas básicas" aria-valuemin="0" aria-valuemax="100" aria-busy="true">
+                  <span style="width: 0%"></span>
                 </div>
               </div>
 
               <div class="progress-foot">
                 <span>Iniciamos com um gesto voluntário.</span>
-                <span class="remaining-count">Faltam 100 famílias para a meta</span>
+                <span class="remaining-count">Faltam <span data-public-remaining="cesta_basica">—</span> cestas para a meta</span>
               </div>
             </div>
 
@@ -287,14 +287,14 @@
                     <h3>Brinquedos para Crianças</h3>
                     <p>Presentes novos para iluminar a infância</p>
                   </div>
-                  <strong class="color-coral">40<small>%</small></strong>
+                  <strong class="color-coral"><span data-public-percent="brinquedo">—</span><small>%</small></strong>
                 </div>
-                <div class="progress-track" role="progressbar" aria-label="Brinquedos: 40 por cento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40">
-                  <span style="width: 40%" class="bg-coral"></span>
+                <div class="progress-track" data-public-progress="brinquedo" role="progressbar" aria-label="Meta de brinquedos" aria-valuemin="0" aria-valuemax="100" aria-busy="true">
+                  <span style="width: 0%" class="bg-coral"></span>
                 </div>
                 <div class="progress-card-foot">
-                  <span>200 de 500 crianças atendidas</span>
-                  <strong>+300 restantes</strong>
+                  <span><span data-public-count="brinquedo">—</span> de <span data-public-goal="brinquedo">—</span> brinquedos arrecadados</span>
+                  <strong><span data-public-remaining="brinquedo">—</span> restantes</strong>
                 </div>
               </article>
 
@@ -305,14 +305,14 @@
                     <h3>Leite e Fralda</h3>
                     <p>Nutrição infantil e cuidado essencial</p>
                   </div>
-                  <strong class="color-mint">90<small>%</small></strong>
+                  <strong class="color-mint"><span data-public-percent="kit_higiene">—</span><small>%</small></strong>
                 </div>
-                <div class="progress-track progress-track-mint" role="progressbar" aria-label="Leite e fralda: 90 por cento" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90">
-                  <span style="width: 90%" class="bg-mint"></span>
+                <div class="progress-track progress-track-mint" data-public-progress="kit_higiene" role="progressbar" aria-label="Meta de leite e fralda" aria-valuemin="0" aria-valuemax="100" aria-busy="true">
+                  <span style="width: 0%" class="bg-mint"></span>
                 </div>
                 <div class="progress-card-foot">
-                  <span>450 de 500 pacotes arrecadados</span>
-                  <strong>Quase lá! Faltam 50</strong>
+                  <span><span data-public-count="kit_higiene">—</span> de <span data-public-goal="kit_higiene">—</span> unidades arrecadadas</span>
+                  <strong><span data-public-remaining="kit_higiene">—</span> restantes</strong>
                 </div>
               </article>
             </div>
@@ -320,9 +320,9 @@
 
           <div class="updated-note">
             <span class="live-dot"></span> 
-            Dados sincronizados em tempo real com o Sistema da Coordenação 
+            <span data-public-status role="status" aria-live="polite">Conectando aos dados da campanha…</span><span>Última alteração: <time data-public-updated>—</time> (Manaus)</span>
             <span class="updated-divider"></span> 
-            <a href="#coordenacao" class="link-audit">Contatar Coordenação ↗</a>
+            <a href="impacto.html" class="link-audit">Ver acompanhamento público ↗</a>
           </div>
         </div>
       </section>
@@ -853,7 +853,7 @@
             <li><a href="#camisa">Camisa Oficial</a></li>
             <li><a href="#coordenacao">Coordenação</a></li>
             <li><a href="#parceiros">Parceiros</a></li>
-            <li><a href="#coordenacao">Contatar Coordenação</a></li>
+            <li><a href="impacto.html">Acompanhar campanha ↗</a></li><li><a href="https://natalsolidariosistema.vercel.app/" target="_blank" rel="noopener noreferrer">Acesso da coordenação ↗</a></li>
           </ul>
         </div>
 
@@ -885,5 +885,6 @@
     <div class="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="script.js"></script>
+    <script src="public-metrics.js"></script>
   </body>
 </html>

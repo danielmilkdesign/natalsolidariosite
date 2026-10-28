@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Acompanhe a arrecadação, as entregas e os totais financeiros do Natal Solidário em TI, em Manaus." />
+    <meta name="theme-color" content="#f6f5f0" />
+    <title>Acompanhe a campanha | Natal Solidário em TI</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="public-metrics.js" defer></script>
+  </head>
+  <body class="public-dashboard">
+    <a class="skip-link" href="#conteudo">Saltar para o conteúdo principal</a>
+    <header class="public-header">
+      <a class="public-brand" href="index.html">Natal Solidário em TI <span>Manaus · 2026</span></a>
+      <nav aria-label="Navegação do acompanhamento"><a href="index.html">Conheça a campanha ↗</a></nav>
+    </header>
+    <main class="public-main" id="conteudo">
+      <header class="public-intro">
+        <p class="public-eyebrow">Acompanhamento da campanha</p>
+        <h1>O impacto de cada gesto.</h1>
+        <p>Veja quanto já foi arrecadado e entregue. Os números são atualizados a partir dos registros da coordenação.</p>
+        <div class="public-sync-line"><p data-public-status role="status" aria-live="polite">Conectando aos dados da campanha…</p><p>Última alteração: <time data-public-updated>—</time> <span class="public-timezone">(Manaus)</span></p></div>
+        <noscript><p class="public-notice">Ative o JavaScript para consultar os dados atualizados. Nenhum total é apresentado sem confirmação.</p></noscript>
+      </header>
+
+      <section aria-labelledby="arrecadacao-title" class="public-section">
+        <div class="public-section-heading"><div><h2 id="arrecadacao-title">Arrecadação física</h2><p>Unidades recebidas e entregues, por tipo de doação.</p></div><p class="public-route-count"><strong data-public-routes>—</strong> rotas concluídas</p></div>
+        <div class="public-inventory">
+          <article class="public-item"><h3>Cestas Básicas</h3><p class="public-total"><strong data-public-count="cesta_basica">—</strong> <span>arrecadadas</span></p><p class="public-item-detail"><span><b data-public-delivered="cesta_basica">—</b> entregues</span><span>Meta: <b data-public-goal="cesta_basica">—</b> cestas</span></p><div class="public-progress" data-public-progress="cesta_basica" role="progressbar" aria-label="Meta de cestas básicas" aria-valuemin="0" aria-valuemax="100" aria-busy="true"><span></span></div></article>
+          <article class="public-item"><h3>Brinquedos</h3><p class="public-total"><strong data-public-count="brinquedo">—</strong> <span>arrecadados</span></p><p class="public-item-detail"><span><b data-public-delivered="brinquedo">—</b> entregues</span><span>Meta: <b data-public-goal="brinquedo">—</b> unidades</span></p><div class="public-progress" data-public-progress="brinquedo" role="progressbar" aria-label="Meta de brinquedos" aria-valuemin="0" aria-valuemax="100" aria-busy="true"><span></span></div></article>
+          <article class="public-item"><h3>Leite e Fralda</h3><p class="public-total"><strong data-public-count="kit_higiene">—</strong> <span>unidades arrecadadas</span></p><p class="public-item-detail"><span><b data-public-delivered="kit_higiene">—</b> entregues</span><span>Meta: <b data-public-goal="kit_higiene">—</b> unidades</span></p><div class="public-progress" data-public-progress="kit_higiene" role="progressbar" aria-label="Meta de leite e fralda" aria-valuemin="0" aria-valuemax="100" aria-busy="true"><span></span></div></article>
+          <article class="public-item"><h3>Água Potável</h3><p class="public-total"><strong data-public-count="agua">—</strong> <span>fardos arrecadados</span></p><p class="public-item-detail"><span><b data-public-delivered="agua">—</b> entregues</span><span>Meta: <b data-public-goal="agua">—</b> fardos</span></p><div class="public-progress" data-public-progress="agua" role="progressbar" aria-label="Meta de água potável" aria-valuemin="0" aria-valuemax="100" aria-busy="true"><span></span></div></article>
+        </div>
+      </section>
+
+      <section aria-labelledby="financeiro-title" class="public-section">
+        <div class="public-section-heading"><div><h2 id="financeiro-title">Prestação de contas</h2><p>Somente entradas e despesas confirmadas. Promessas de doação não entram nestes totais.</p></div></div>
+        <dl class="public-finance"><div><dt>Entradas confirmadas</dt><dd data-public-money="entradas_centavos">—</dd></div><div><dt>Despesas confirmadas</dt><dd data-public-money="saidas_centavos">—</dd></div><div><dt>Saldo da campanha</dt><dd data-public-money="saldo_centavos">—</dd></div></dl>
+      </section>
+      <aside class="public-notice"><h2>Transparência com cuidado</h2><p>Esta página mostra apenas totais da campanha. Nomes, contatos, comprovantes e registros individuais permanecem na área restrita da coordenação. Os totais exibidos não representam uma auditoria independente.</p></aside>
+      <div class="public-actions"><a href="index.html#ajudar">Conheça as formas de ajudar ↗</a><a href="index.html#camisa">Veja a camisa oficial ↗</a></div>
+    </main>
+    <footer class="public-footer"><p>Natal Solidário em TI · Realização Amigos do Sistema</p><a href="https://natalsolidariosistema.vercel.app/" target="_blank" rel="noopener noreferrer">Acesso da coordenação ↗</a></footer>
+  </body>
+</html>
